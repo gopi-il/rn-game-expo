@@ -1,0 +1,56 @@
+  <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Memory Matrix</title>
+    <link rel="shortcut icon" href="./TemplateData/favicon.ico">
+    <link rel="stylesheet" href="./TemplateData/style.css">
+    
+  </head>
+  <body>
+      <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" style="position: absolute;"></canvas>
+      </div>
+<script>
+
+var Yrotvalue = undefined;
+var UNITYINSTANCE = undefined;
+const cameraObjectName = "";
+const stageObjectName = "";
+      const buildUrl = "./Build";
+      const loaderUrl = buildUrl + "/Memory-Matrix WebGL.loader.js";
+      const config = {
+        dataUrl: buildUrl + "/Memory-Matrix WebGL.data.unityweb",
+        frameworkUrl: buildUrl + "/Memory-Matrix WebGL.framework.js",
+        codeUrl: buildUrl + "/Memory-Matrix WebGL.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Feeltech Digivation",
+        productName: "Memory Matrix",
+        productVersion: "0.1",
+      };
+
+      const container = document.querySelector("#unity-container");
+      const canvas = document.querySelector("#unity-canvas");
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        //config.devicePixelRatio = 1;
+      }
+
+      const script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+
+        }).then((unityInstance) => {
+          UNITYINSTANCE  = unityInstance;
+          }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+      </script>
+  </body>
+</html>
